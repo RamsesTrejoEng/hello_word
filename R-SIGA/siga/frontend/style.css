@@ -1,0 +1,266 @@
+/* ===== SIGA — style.css =====
+   Hoja de estilos compartida por index.html, login.html y dashboard.html */
+
+/* ---------- Variables (cambia los colores aquí y cambia todo el sitio) ---------- */
+:root {
+  --fondo: #f0eee6;
+  --tarjeta: #faf9f5;
+  --texto: #1f1e1d;
+  --texto-suave: #5f5a50;
+  --acento: #c6613f;
+  --acento-hover: #a94f31;
+  --borde: #e3dfd3;
+  --error: #b3261e;
+  --radio: 12px;
+}
+
+/* ---------- Base ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+/* ---------- Estructura general ---------- */
+header {
+  background: var(--texto);
+  color: var(--fondo);
+  padding: 24px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.4rem;
+  letter-spacing: 2px;
+}
+
+header p {
+  color: #d6d2c4;
+  margin-top: 4px;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- Tarjetas (cada <section> del main) ---------- */
+section {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 24px;
+}
+
+section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+
+section p {
+  color: var(--texto-suave);
+}
+
+/* ---------- Enlaces y botones ---------- */
+a {
+  color: var(--acento);
+}
+
+#bienvenida a,
+button {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 12px 24px;
+  background: var(--acento);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radio);
+  cursor: pointer;
+}
+
+#bienvenida a:hover,
+button:hover {
+  background: var(--acento-hover);
+}
+
+/* ---------- Login ---------- */
+#login {
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#form-login {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#form-login label {
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+#form-login input {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: #ffffff;
+}
+
+#form-login input:focus {
+  outline: 2px solid var(--acento);
+  border-color: var(--acento);
+}
+
+#mensaje-error {
+  margin-top: 12px;
+  color: var(--error);
+  font-weight: 600;
+}
+
+/* ---------- Dashboard ---------- */
+#promedio-general {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2rem;
+  color: var(--acento);
+  font-weight: 700;
+}
+
+/* La tabla se desplaza horizontalmente en pantallas pequeñas */
+#calificaciones {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--borde);
+}
+
+th {
+  background: var(--fondo);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--texto-suave);
+}
+
+tbody tr:hover {
+  background: #f5f3ec;
+}
+
+/* ---------- Pantallas grandes ---------- */
+@media (min-width: 700px) {
+  header h1 {
+    font-size: 3rem;
+  }
+
+  main {
+    padding: 40px 24px;
+  }
+}
+
+/* ---------- Dashboard: buscador, estado y cerrar sesión ---------- */
+#buscador {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 6px 0 16px;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: #ffffff;
+}
+
+#buscador:focus {
+  outline: 2px solid var(--acento);
+  border-color: var(--acento);
+}
+
+#estado {
+  min-height: 1.5em;
+  margin-bottom: 8px;
+  color: var(--texto-suave);
+}
+
+#estado.error {
+  color: var(--error);
+  font-weight: 600;
+}
+
+.reprobado {
+  color: var(--error);
+}
+
+#btn-cerrar-sesion {
+  padding: 8px 16px;
+  background: transparent;
+  color: var(--fondo);
+  border: 1px solid #d6d2c4;
+}
+
+#btn-cerrar-sesion:hover {
+  background: #3d3b36;
+}
+
+/* ---------- Panel docente ---------- */
+#selector-curso,
+#archivo {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 6px 0 16px;
+  padding: 12px;
+  font: inherit;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: #ffffff;
+}
+
+#form-excel { margin-top: 16px; }
+#resultado { margin-top: 12px; font-weight: 600; }
+#resultado.error { color: var(--error); }
+#lista-errores { margin: 8px 0 0 20px; color: var(--error); }
+#tabla-curso { overflow-x: auto; }
+#enlace-admin { margin-top: 8px; }

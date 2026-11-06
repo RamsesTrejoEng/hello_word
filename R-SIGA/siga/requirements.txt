@@ -1,0 +1,18 @@
+# Servidor y API
+fastapi>=0.110
+uvicorn[standard]>=0.27
+python-multipart>=0.0.9      # necesario para recibir archivos (subir Excel)
+
+# Base de datos
+sqlalchemy>=2.0
+psycopg2-binary>=2.9         # conector de PostgreSQL (SQLite no lo necesita)
+
+# Excel, seguridad y configuración
+openpyxl>=3.1
+pyjwt>=2.8                   # tokens JWT
+bcrypt>=4.1                  # hash de contraseñas
+python-dotenv>=1.0           # lee el archivo .env
+
+# Pruebas (puedes quitarlas en producción)
+pytest>=8.0
+httpx>=0.27                  # lo usa TestClient de FastAPI

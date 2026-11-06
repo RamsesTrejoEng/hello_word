@@ -1,0 +1,85 @@
+// Modelo actualizado de SIGA — pégalo en dbdiagram.io
+// Cambios vs. el primer diagrama: tabla "usuarios" (login con roles), campo
+// "activa" en materias, "numero" y "fecha" en evaluaciones, y validaciones.
+
+Table usuarios {
+  id int [pk, increment]
+  usuario varchar(50) [unique, not null]
+  password_hash varchar(255) [not null]
+  rol varchar(20) [not null, note: 'alumno | profesor | admin']
+  alumno_id int [unique]
+  profesor_id int [unique]
+  activo bool [default: true]
+}
+
+Table alumnos {
+  id int [pk, increment]
+  matricula varchar(20) [unique, not null]
+  nombre varchar(120) [not null]
+  generacion varchar(20)
+  activo bool [default: true]
+}
+
+Table profesores {
+  id int [pk, increment]
+  nombre varchar(120) [not null]
+  activo bool [default: true]
+}
+
+Table materias {
+  id int [pk, increment]
+  nombre varchar(120) [unique, not null]
+  area varchar(80)
+  activa bool [default: true, note: 'false = ya no se imparte (se conserva su historial)']
+}
+
+Table periodos {
+  id int [pk, increment]
+  nombre varchar(20) [unique, not null]
+  fecha_inicio date
+  fecha_fin date
+  activo bool [default: false]
+}
+
+Table materias_periodo {
+  id int [pk, increment]
+  materia_id int [not null]
+  periodo_id int [not null]
+  profesor_id int [not null]
+  indexes { (materia_id, periodo_id, profesor_id) [unique] }
+}
+
+Table inscripciones {
+  id int [pk, increment]
+  alumno_id int [not null]
+  materia_periodo_id int [not null]
+  indexes { (alumno_id, materia_periodo_id) [unique] }
+}
+
+Table evaluaciones {
+  id int [pk, increment]
+  materia_periodo_id int [not null]
+  numero int [not null]
+  nombre_parcial varchar(60) [not null]
+  fecha date
+  indexes { (materia_periodo_id, numero) [unique] }
+}
+
+Table calificaciones {
+  id int [pk, increment]
+  inscripcion_id int [not null]
+  evaluacion_id int [not null]
+  calificacion float [not null, note: 'CHECK entre 0 y 10']
+  indexes { (inscripcion_id, evaluacion_id) [unique] }
+}
+
+Ref: usuarios.alumno_id > alumnos.id
+Ref: usuarios.profesor_id > profesores.id
+Ref: materias_periodo.materia_id > materias.id
+Ref: materias_periodo.periodo_id > periodos.id
+Ref: materias_periodo.profesor_id > profesores.id
+Ref: inscripciones.alumno_id > alumnos.id
+Ref: inscripciones.materia_periodo_id > materias_periodo.id
+Ref: evaluaciones.materia_periodo_id > materias_periodo.id
+Ref: calificaciones.inscripcion_id > inscripciones.id
+Ref: calificaciones.evaluacion_id > evaluaciones.id

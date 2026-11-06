@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGA — Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>SIGA</h1>
+    <p id="nombre-usuario">Bienvenido, <span id="usuario-actual">Alumno</span></p>
+    <button type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
+  </header>
+
+  <main>
+    <section id="resumen">
+      <h2>Resumen académico</h2>
+      <p>Promedio general: <span id="promedio-general">--</span></p>
+    </section>
+
+    <section id="calificaciones">
+      <h2>Calificaciones</h2>
+
+      <label for="buscador">Buscar materia</label>
+      <input type="text" id="buscador" placeholder="Ej. mate">
+      <p id="estado"></p>
+
+      <table id="tabla-calificaciones">
+        <thead>
+          <tr>
+            <th>Materia</th>
+            <th>Parcial 1</th>
+            <th>Parcial 2</th>
+            <th>Parcial 3</th>
+            <th>Promedio</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpo-tabla">
+          <!-- Las filas se van a generar aquí con JavaScript (mostrarCalificaciones) -->
+        </tbody>
+      </table>
+    </section>
+
+    <section id="historial">
+      <h2>Historial académico</h2>
+      <p>Materias de periodos anteriores.</p>
+      <div id="lista-historial">
+        <!-- Se llenará cuando conectemos el backend -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 SIGA</p>
+  </footer>
+
+  <script src="js/comun.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

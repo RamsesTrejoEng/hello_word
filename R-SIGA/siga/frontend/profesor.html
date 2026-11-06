@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGA — Panel docente</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>SIGA</h1>
+    <p>Panel docente: <span id="usuario-actual"></span></p>
+    <button type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
+  </header>
+
+  <main>
+    <section id="cursos">
+      <h2>Mis materias</h2>
+      <label for="selector-curso">Materia del periodo activo</label>
+      <select id="selector-curso"></select>
+      <p id="estado"></p>
+      <p id="enlace-admin" hidden>Administrador: da de alta alumnos, materias y grupos en <a href="/docs">el panel de la API</a>.</p>
+    </section>
+
+    <section id="carga">
+      <h2>Subir calificaciones desde Excel</h2>
+      <p>Descarga la plantilla, llénala (una fila por alumno y parcial) y súbela.</p>
+      <button type="button" id="btn-plantilla">Descargar plantilla</button>
+
+      <form id="form-excel">
+        <label for="archivo">Archivo .xlsx</label>
+        <input type="file" id="archivo" accept=".xlsx" required>
+        <button type="submit">Subir calificaciones</button>
+      </form>
+
+      <p id="resultado"></p>
+      <ul id="lista-errores"></ul>
+    </section>
+
+    <section id="tabla-curso">
+      <h2 id="titulo-curso">Calificaciones del grupo</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Matrícula</th><th>Nombre</th>
+            <th>Parcial 1</th><th>Parcial 2</th><th>Parcial 3</th><th>Promedio</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpo-tabla"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 SIGA</p>
+  </footer>
+
+  <script src="js/comun.js"></script>
+  <script src="js/profesor.js"></script>
+</body>
+</html>
